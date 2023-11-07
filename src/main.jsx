@@ -10,6 +10,10 @@ import {
 import Roots from './Pages/Roots';
 import ErrorPage from './Pages/ErrorPage';
 import Home from './Pages/Home';
+import AddBlog from './Components/AddBlog';
+import AllBlogs from './Components/AllBlogs';
+import FeaturedBlog from './Components/FeaturedBlog';
+import Wishlist from './Components/Wishlist';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +25,23 @@ const router = createBrowserRouter([
         path: '/',
         element: <Home></Home>,
       },
+      {
+        path:'/addBlog',
+        element:<AddBlog></AddBlog>
+      },
+      {
+        path:'/allBlogs',
+        element:<AllBlogs></AllBlogs>
+      },
+      {
+        path:'/featuredBlogs',
+        element:<FeaturedBlog></FeaturedBlog>
+      },
+      {
+        path:'/wishlist',
+        element:<Wishlist></Wishlist>
+      }
+    
     ],
   },
 ]);
