@@ -1,13 +1,30 @@
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2'
 
 const Home = () => {
-    const handleSubscribe =()=>{
+
+    const [data, setData] = useState();
+    useEffect(() => {
+
+        fetch("/Data.json")
+            .then((res) => res.json())
+            .then((data) => {
+                setData(data);
+            })
+            .catch((error) => {
+                console.error('Error fetching data:', error);
+            });
+    }, []);
+
+    console.log(data);
+
+    const handleSubscribe = () => {
         return Swal.fire({
             icon: "success",
             title: "Thank you for subscribing to our newsletter",
             text: "You don’t need to send emails",
             footer: '<a href="#">Why do I have this issue?</a>'
-          });
+        });
     }
     return (
         <div>
@@ -53,7 +70,9 @@ const Home = () => {
                 <h1>Recent Blogs</h1>
             </div>
             <div>
-                dinamically show all the blogs here
+              {/* {
+                data.map(i=><p>coming</p>)
+              } */}
             </div>
             <div className="bg-gray-800 p-5 my-8 lg:w-1/2 mx-auto rounded-xl">
                 <div>
