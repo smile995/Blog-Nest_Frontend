@@ -25,7 +25,7 @@ const Navbar = () => {
                 </div>
                 <div className="flex justify-center items-center md:gap-2 gap-1 ml-2">
                     {/* <img className="md:h-12 h-8" src={logo} alt="" /> */}
-                    <h1 className="md:text-4xl text-2xl font-bold ">MO<span className="text-red-700">T</span>EX</h1>
+                    <h1 className="md:text-4xl text-2xl font-bold ">Blog<span className="text-fuchsia-700 font-extrabold">N</span>est</h1>
                 </div>
             </div>
             <div className="navbar-center hidden lg:flex">
