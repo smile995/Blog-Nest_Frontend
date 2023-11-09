@@ -1,12 +1,24 @@
-import { createContext } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const ShareData = createContext(null)
 const AuthContext = ({ children }) => {
-    const name = 'amar sonal bangla '
+    const [data, setData] = useState([]);
+    useEffect(() => {
+
+        fetch("http://localhost:5000/blog")
+            .then((res) => res.json())
+            .then((data) => {
+                setData(data);
+            })
+            .catch((error) => {
+                console.error('Error fetching data:', error);
+            });
+    }, []);
+    
 
 
     const packageData = {
-        name
+        data
     }
 
 

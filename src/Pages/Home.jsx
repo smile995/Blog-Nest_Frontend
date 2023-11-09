@@ -1,21 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useContext} from 'react';
 import Swal from 'sweetalert2'
 import BlogCards from '../Components/BlogCards';
+import { ShareData } from '../assets/ContextApi/AuthContext';
 
 const Home = () => {
-
-    const [data, setData] = useState([]);
-    useEffect(() => {
-
-        fetch("/Data.json")
-            .then((res) => res.json())
-            .then((data) => {
-                setData(data);
-            })
-            .catch((error) => {
-                console.error('Error fetching data:', error);
-            });
-    }, []);
+    const {data}=useContext(ShareData)
 
     console.log(data);
 
@@ -72,7 +61,7 @@ const Home = () => {
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 rounded-lg'>
              {
-                data.map(item=><BlogCards key={item.id} item={item}></BlogCards>)
+                data.map(item=><BlogCards key={item._id} item={item}></BlogCards>)
              }
             </div>
             <div className="bg-gray-800 p-5 my-8 lg:w-1/2 mx-auto rounded-xl">

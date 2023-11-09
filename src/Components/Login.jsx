@@ -5,13 +5,20 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import login from '/Image/login.jpg'
 import { Link } from "react-router-dom";
 const Login = () => {
+    const handleLogin = (e)=>{
+        e.preventDefault();
+        const form= e.target;
+        const email= form.email.value;
+        const password= form.password.value;
+        console.log( email,password);
+    }
     return (
         <div className="grid  grid-cols-1  md:grid-cols-2  my-8 ">
             <div className=' flex justify-center border-r-4 border-r-fuchsia-700 '>
                 <img src={login} alt="" />
             </div>
             <div className='bg-slate-300 p-2 md:p-10 lg:p-20 ' >
-                <form>
+                <form onSubmit={ handleLogin }>
                     <h1 className='text-3xl  text-center font-bold text-fuchsia-700'>Login Here</h1>
                     <div className="mt-5 ">
                         <h1 className="text-center font-semibold">Do not have an account? <Link className="text-fuchsia-700 font-bold underline" to={'/register'}>Register</Link></h1>

@@ -1,4 +1,4 @@
-
+import Swal from 'sweetalert2'
 
 const AddBlog = () => {
   
@@ -11,7 +11,29 @@ const AddBlog = () => {
         const Category= form.select.value
         const shortDescription= form.shortDescription.value
         const longDescription= form.longDescription.value
-        console.log(tittle, url,Category,shortDescription,longDescription);
+        const addBlog= {tittle, url,Category,shortDescription,longDescription}
+        console.log(addBlog);
+        fetch('http://localhost:5000/blog',{
+            method:'POST',
+           headers:{'content-type':'application/json'},
+           body:JSON.stringify(addBlog)
+
+        })
+        .then(req=>req.json())
+        .then(data=>{
+            console.log(data);
+            if(data.insertedId){
+                 Swal.fire({
+                    icon: "success",
+                    title: "Blog added successfully",
+                    text: "Congratulations",
+                    
+                  });
+                  form.reset()
+                  
+            }
+        })
+        .catch(Error=>console.log(Error))
     }
     return (
         <div className='my-8'>
