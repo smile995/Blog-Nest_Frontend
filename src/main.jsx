@@ -14,6 +14,9 @@ import AddBlog from './Components/AddBlog';
 import AllBlogs from './Components/AllBlogs';
 import FeaturedBlog from './Components/FeaturedBlog';
 import Wishlist from './Components/Wishlist';
+import AuthContext from './assets/ContextApi/AuthContext';
+import Login from './Components/Login';
+import Register from './Components/Register';
 
 const router = createBrowserRouter([
   {
@@ -26,28 +29,38 @@ const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path:'/addBlog',
-        element:<AddBlog></AddBlog>
+        path: '/addBlog',
+        element: <AddBlog></AddBlog>
       },
       {
-        path:'/allBlogs',
-        element:<AllBlogs></AllBlogs>
+        path: '/allBlogs',
+        element: <AllBlogs></AllBlogs>
       },
       {
-        path:'/featuredBlogs',
-        element:<FeaturedBlog></FeaturedBlog>
+        path: '/featuredBlogs',
+        element: <FeaturedBlog></FeaturedBlog>
       },
       {
-        path:'/wishlist',
-        element:<Wishlist></Wishlist>
+        path: '/wishlist',
+        element: <Wishlist></Wishlist>
+      },
+      {
+        path:'/login',
+        element:<Login></Login>
+      },
+      {
+        path:'/register',
+        element:<Register></Register>
       }
-    
+
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <AuthContext>
       <RouterProvider router={router} />
+    </AuthContext>
   </React.StrictMode>,
 )
