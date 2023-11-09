@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2'
+import BlogCards from '../Components/BlogCards';
 
 const Home = () => {
 
-    const [data, setData] = useState();
+    const [data, setData] = useState([]);
     useEffect(() => {
 
         fetch("/Data.json")
@@ -69,10 +70,10 @@ const Home = () => {
             <div className="text-center text-4xl font-semibold text-fuchsia-700">
                 <h1>Recent Blogs</h1>
             </div>
-            <div>
-              {/* {
-                data.map(i=><p>coming</p>)
-              } */}
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 rounded-lg'>
+             {
+                data.map(item=><BlogCards key={item.id} item={item}></BlogCards>)
+             }
             </div>
             <div className="bg-gray-800 p-5 my-8 lg:w-1/2 mx-auto rounded-xl">
                 <div>

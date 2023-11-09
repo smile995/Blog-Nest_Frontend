@@ -1,54 +1,50 @@
-[{
+[
+  {
     "id": 1,
     "title": "Unveiling the Secrets of Time Travel",
-    "image": "time_travel.jpg",
+    "image": "https://static.wixstatic.com/media/bea566_6b1323ea77234b43bc8f0fef08a75991~mv2_d_2057_1346_s_2.jpg/v1/fill/w_640,h_418,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/bea566_6b1323ea77234b43bc8f0fef08a75991~mv2_d_2057_1346_s_2.jpg",
     "category": "Science",
     "short_description": "Explore the fascinating world of time travel and its mind-bending possibilities.",
     "long_description": "Dive into the theoretical frameworks of time travel, from wormholes to the theory of relativity, and ponder the age-old question: Can we ever journey through time?"
-  }
-  ,
+  },
   {
     "id": 2,
     "title": "Mysteries of the Deep Sea: Creatures of the Abyss",
-    "image": "deep_sea.jpg",
+    "image": "https://www.india-tours.com/blog/wp-content/uploads/2021/09/best-place-in-india.jpg",
     "category": "Nature",
     "short_description": "Discover the bizarre and wondrous creatures that inhabit the darkest depths of the ocean.",
     "long_description": "Journey to the abyssal plains where bioluminescent wonders and enigmatic life forms lurk. Delve into the abyss and meet the bizarre residents of this hidden world."
-  }
-  ,
+  },
   {
     "id": 3,
     "title": "Exploring the Enchanting Landscapes of Iceland",
-    "image": "iceland.jpg",
+    "image": "https://theplanetd.com/images/best-travel-blogs-8.jpg",
     "category": "Travel",
     "short_description": "Embark on a visual tour of the breathtaking landscapes that make Iceland a photographer's paradise.",
     "long_description": "From cascading waterfalls to dramatic geothermal landscapes, this article is your guide to the mesmerizing beauty of Iceland. Prepare to be awestruck by the Land of Fire and Ice."
-  }
-  ,
+  },
   {
     "id": 4,
     "title": "The Art of Culinary Fusion: East Meets West",
-    "image": "culinary_fusion.jpg",
+    "image": "https://www.forbes.com/advisor/wp-content/uploads/2022/09/brand_identity.jpg",
     "category": "Food",
     "short_description": "Savor the delectable world of culinary fusion as we blend flavors from the East and the West.",
     "long_description": "Explore the magic of culinary fusion, where traditional flavors from different cultures harmoniously collide. Discover how master chefs create innovative dishes that tantalize your taste buds."
-  }
-  ,
+  },
   {
     "id": 5,
     "title": "In Search of Lost Civilizations: Hidden Treasures of the Amazon",
-    "image": "amazon_civilizations.jpg",
+    "image": "https://captionsboy.com/storage/2022/06/Memorable-History.jpg",
     "category": "History",
     "short_description": "Join the expedition to unravel the mysteries of ancient civilizations hidden deep within the Amazon rainforest.",
     "long_description": "Embark on an adventure through the dense Amazon jungle as we uncover the remains of long-lost civilizations, decipher ancient hieroglyphs, and delve into the untold history of this enigmatic region."
-  }
-  ,
+  },
   {
     "id": 6,
     "title": "The Science of Dreams: Unlocking the Secrets of Your Mind",
-    "image": "dreams.jpg",
+    "image": "https://d3uigcfkiiww0g.cloudfront.net/wordpress/blog/pics-en/uploads/1200px-Human_Heart_and_Circulatory_System.png",
     "category": "Psychology",
     "short_description": "Journey into the realm of dreams and explore the fascinating science behind what happens while you sleep.",
     "long_description": "Delve into the mysterious world of dreams, from lucid dreaming to the interpretation of symbols in your subconscious mind. Learn how your dreams can reveal hidden aspects of your psyche and influence your waking life."
   }
-  ]
+]
