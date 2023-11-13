@@ -23,11 +23,12 @@ const Login = () => {
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
-                    title: "Your work has been saved",
+                    title: "Usre login successfully",
                     showConfirmButton: false,
                     timer: 1500
                   });
             }
+            form.reset()
         })
         .catch(error=>{
             console.log(error.code);

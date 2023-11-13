@@ -35,7 +35,7 @@ const AuthContext = ({ children }) => {
         user,
         setUser,
         logIn,
-        signOut
+        logOut
     }
 
 
