@@ -7,49 +7,63 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { ShareData } from "../assets/ContextApi/AuthContext";
 import Swal from 'sweetalert2'
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { FacebookAuthProvider, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import auth from "../Firebase/Firebase";
 const Login = () => {
-    const navigate=useNavigate()
-    const {logIn,setUser}=useContext(ShareData)
-    const handleLogin = (e)=>{
+    const navigate = useNavigate()
+    const { logIn, setUser } = useContext(ShareData)
+    const handleLogin = (e) => {
         e.preventDefault();
-        const form= e.target;
-        const email= form.email.value;
-        const password= form.password.value;
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
         // console.log( email,password);
-        logIn(email,password)
-        .then(result=>{
-            const user=(result.user);
-            setUser(user)
-            if(user){
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Usre login successfully",
-                    showConfirmButton: false,
-                    timer: 1500
-                  });
-            }
-            form.reset()
-            navigate('/')
-        })
-        .catch(error=>{
-            console.log(error.code);
-        })
+        logIn(email, password)
+            .then(result => {
+                const user = (result.user);
+                setUser(user)
+                if (user) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Usre login successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+                form.reset()
+                navigate('/')
+            })
+            .catch(error => {
+                console.log(error.code);
+            })
 
     }
 
 
-    const handleSignInWithGoogle=()=>{
-        const provider= new GoogleAuthProvider();
+    const handleSignInWithGoogle = () => {
+        const provider = new GoogleAuthProvider();
+        signInWithPopup(auth, provider)
+            .then(result => {
+                setUser(result.user);
+                navigate('/')
+            })
+            .catch(error => {
+                console.log(error.code);
+            })
+    }
+
+
+    const handleSignInWithFacebook = () => {
+        const provider= new FacebookAuthProvider();
         signInWithPopup(auth,provider)
         .then(result=>{
-            setUser(result.user);
-            navigate('/')
+            console.log(result.user);
         })
         .catch(error=>{
-            console.log(error.code);
+            console.log(error)
+            console.log(error.code)
+            
         })
     }
     return (
@@ -58,7 +72,7 @@ const Login = () => {
                 <img src={login} alt="" />
             </div>
             <div className='bg-slate-300 p-2 md:p-10 lg:p-20 ' >
-                <form onSubmit={ handleLogin }>
+                <form onSubmit={handleLogin}>
                     <h1 className='text-3xl  text-center font-bold text-fuchsia-700'>Login Here</h1>
                     <div className="mt-5 ">
                         <h1 className="text-center font-semibold">Do not have an account? <Link className="text-fuchsia-700 font-bold underline" to={'/register'}>Register</Link></h1>
@@ -98,7 +112,7 @@ const Login = () => {
                     <div onClick={handleSignInWithGoogle}>
                         <button className="btn   btn-outline btn-secondary w-full text-md"><span className="text-2xl"><FcGoogle></FcGoogle></span> Google</button>
                     </div>
-                    <div >
+                    <div onClick={handleSignInWithFacebook} >
                         <button className="btn    btn-outline btn-secondary w-full text-md"><span className="text-2xl text-blue-900"><FaFacebook></FaFacebook></span> Facebook</button>
                     </div>
                 </div>
