@@ -4,7 +4,7 @@ import { ShareData } from "../assets/ContextApi/AuthContext";
 import Swal from 'sweetalert2'
 
 const Navbar = () => {
-    const {user,logOut}=useContext(ShareData)
+    const { user, logOut } = useContext(ShareData)
     const nabManu = <>
         <li><NavLink to={"/"}>Home</NavLink></li>
         <li><NavLink to={"/addBlog"}>Add Blog</NavLink></li>
@@ -14,18 +14,18 @@ const Navbar = () => {
 
     </>
 
-    const handleLogOut=()=>{
+    const handleLogOut = () => {
         logOut()
-        .then(()=>{
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Logout Successfull",
-                showConfirmButton: false,
-                timer: 1500
-            });
-        }
-        )
+            .then(() => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Logout Successfull",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+            )
     }
     return (
         <div className="navbar md:px-5 ">
@@ -58,41 +58,35 @@ const Navbar = () => {
 
                 <div className="flex justify-center items-center">
                     <div className="avatar">
-                        <div className="w-12 h-12 rounded-full mr-3">
-                            <img src="https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1309" />
-                        </div>
-                        <div>
-                           {
-                            user ?
-                            <div className="flex gap-3 items-center">
-                                {/* <p className="hidden md:contents">{users.email}</p> */}
-                                <button onClick={handleLogOut} className="font-semibold btn btn-secondary">Logout</button>
+                        {
+                            user?.photoURL ? < div >
+                            <img src={user.photoURL} />
                             </div>
-    
-                            :
-                            <Link to={'/login'}>
-                                <button className="font-semibold btn btn-secondary">Login</button>
-                            </Link>
-                           }
+                                : <div className="w-12 h-12 rounded-full mr-3">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png" />
+                                </div>
+                        }
+
+                        <div>
+                            {
+                                user ?
+                                    <div className="flex gap-3 items-center">
+                                        {/* <p className="hidden md:contents">{users.email}</p> */}
+                                        <button onClick={handleLogOut} className="font-semibold btn btn-secondary">Logout</button>
+                                    </div>
+
+                                    :
+                                    <Link to={'/login'}>
+                                        <button className="font-semibold btn btn-secondary">Login</button>
+                                    </Link>
+                            }
                         </div>
 
                     </div>
                 </div>
-                {/* {
-                    users ?
-                        <div className="flex gap-3 items-center">
-                            <p className="hidden md:contents">{users.email}</p>
-                            <button onClick={hanndleSignOut} className="font-semibold btn btn-secondary">SignOut</button>
-                        </div>
-
-                        :
-                        <Link to={'/signIn'}>
-                            <button className="font-semibold btn btn-secondary">SignIn</button>
-                        </Link>
-                } */}
 
             </div>
-        </div>
+        </div >
     );
 };
 
