@@ -1,10 +1,11 @@
-import { useContext} from 'react';
+
+import { useContext } from 'react';
 import Swal from 'sweetalert2'
 import BlogCards from '../Components/BlogCards';
 import { ShareData } from '../assets/ContextApi/AuthContext';
 
 const Home = () => {
-    const {data}=useContext(ShareData)
+    const { data } = useContext(ShareData)
 
     const handleSubscribe = () => {
         return Swal.fire({
@@ -49,8 +50,11 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center w-4/6 mx-auto ">
-                    <h1 className="text-3xl lg:text-7xl text-fuchsia-700 font-bold">Get Ready to Explore  the World with our Blog</h1>
+                    <h1 className="text-3xl lg:text-7xl text-center text-fuchsia-700 font-bold">Get Ready to Explore  the World with our Blog</h1>
                 </div>
+
+
+
             </div>
             {/* recent blog post section */}
 
@@ -58,9 +62,9 @@ const Home = () => {
                 <h1>Recent Blogs</h1>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 rounded-lg'>
-             {
-                data.map(item=><BlogCards key={item._id} item={item}></BlogCards>)
-             }
+                {
+                    data.map(item => <BlogCards key={item._id} item={item} ></BlogCards>)
+                }
             </div>
             <div className="bg-gray-800 p-5 my-8 lg:w-1/2 mx-auto rounded-xl">
                 <div>

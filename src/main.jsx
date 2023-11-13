@@ -17,6 +17,7 @@ import Wishlist from './Components/Wishlist';
 import AuthContext from './assets/ContextApi/AuthContext';
 import Login from './Components/Login';
 import Register from './Components/Register';
+import Private from './Components/Private';
 
 const router = createBrowserRouter([
   {
@@ -30,19 +31,19 @@ const router = createBrowserRouter([
       },
       {
         path: '/addBlog',
-        element: <AddBlog></AddBlog>
+        element: <Private><AddBlog></AddBlog></Private>
       },
       {
         path: '/allBlogs',
-        element: <AllBlogs></AllBlogs>
+        element: <Private><AllBlogs></AllBlogs></Private>
       },
       {
         path: '/featuredBlogs',
-        element: <FeaturedBlog></FeaturedBlog>
+        element:<Private> <FeaturedBlog></FeaturedBlog></Private>
       },
       {
         path: '/wishlist',
-        element: <Wishlist></Wishlist>
+        element: <Private><Wishlist></Wishlist></Private>
       },
       {
         path:'/login',

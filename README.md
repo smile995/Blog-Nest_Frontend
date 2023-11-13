@@ -2,7 +2,10 @@
 - Live link : 
 
 # some feature of this project
-* 
+* React loading skeletal
+* Extra two login system like google and facebook
+* Social media link in footer
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

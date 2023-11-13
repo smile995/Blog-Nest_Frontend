@@ -7,16 +7,14 @@ const AuthContext = ({ children }) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState();
     const [user, setUser] = useState(null)
-    if (loading===true) {
-        <p>loding</p>
-    }
+  
     useEffect(() => {
-
+        setLoading(true)
         fetch("http://localhost:5000/blog")
             .then((res) => res.json())
             .then((data) => {
                 setData(data);
-                setLoading(true)
+                setLoading(false)
             })
             .catch((error) => {
                 console.error('Error fetching data:', error);
@@ -31,18 +29,22 @@ const AuthContext = ({ children }) => {
     const logIn = (email, password) => {
         setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
+        
     }
     const logOut = () => {
         setLoading(true)
         return signOut(auth)
+        
     }
     useEffect(() => {
 
         const unSubscribe = onAuthStateChanged(auth, user => {
             setUser(user)
+            setLoading(false)
         })
         return () => {
             unSubscribe()
+            setLoading(false)
         }
     }, [])
 
@@ -53,7 +55,7 @@ const AuthContext = ({ children }) => {
         setUser,
         logIn,
         logOut,
-        loading
+        loading,setLoading
     }
 
 

@@ -9,7 +9,7 @@ import { ShareData } from "../assets/ContextApi/AuthContext";
 
 const Register = () => {
     const [error, setError] = useState('')
-    const { createUser,setUser } = useContext(ShareData)
+    const { createUser,setUser,setLoading } = useContext(ShareData)
     const navigate=useNavigate()
     const handleRegister = (e) => {
         e.preventDefault();
@@ -40,10 +40,12 @@ const Register = () => {
            return 
         }
         createUser(email, password)
+        setError(true)
+
             .then(result => {
-                const user = result.user
-                console.log(user);
+                const user = result.user              
                 setUser(user)
+                setLoading(false)
                 if (user) {
                     form.reset()
                     setError('')
