@@ -6,8 +6,6 @@ import { ShareData } from '../assets/ContextApi/AuthContext';
 const Home = () => {
     const {data}=useContext(ShareData)
 
-    console.log(data);
-
     const handleSubscribe = () => {
         return Swal.fire({
             icon: "success",

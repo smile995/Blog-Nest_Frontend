@@ -82,7 +82,7 @@ const AddBlog = () => {
                                 <span className="label-text">Short Description</span>
 
                             </label>
-                            <input type="text" name='shortDescription' placeholder="URL" className="input input-bordered w-full border-fuchsia-700 " />
+                            <input type="text" name='shortDescription' placeholder="Short Description" className="input input-bordered w-full border-fuchsia-700 " />
 
                         </div>
                     </div>
