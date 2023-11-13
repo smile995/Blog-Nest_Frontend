@@ -11,7 +11,7 @@ const Navbar = () => {
 
     </>
     return (
-        <div className="navbar md:px-5">
+        <div className="navbar md:px-5 ">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -36,10 +36,22 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-             <Link to={'login'}>
-             <button className="btn btn-secondary">Login</button>
-             </Link>
 
+
+
+                <div className="flex justify-center items-center">
+                    <div className="avatar">
+                        <div className="w-12 h-12 rounded-full mr-3">
+                            <img src="https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1309" />
+                        </div>
+                        <div>
+                            <Link to={'login'}>
+                                <button className="btn btn-secondary">Login</button>
+                            </Link>
+                        </div>
+
+                    </div>
+                </div>
                 {/* {
                     users ?
                         <div className="flex gap-3 items-center">

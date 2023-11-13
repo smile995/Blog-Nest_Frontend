@@ -1,4 +1,6 @@
 import { createContext, useEffect, useState } from "react";
+import auth from "../../Firebase/Firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 export const ShareData = createContext(null)
 const AuthContext = ({ children }) => {
@@ -15,10 +17,14 @@ const AuthContext = ({ children }) => {
             });
     }, []);
     
+    const createUser=(email,password)=>{
+        return createUserWithEmailAndPassword(auth,email,password)
+    }
 
 
     const packageData = {
-        data
+        data,
+        createUser,
     }
 
 

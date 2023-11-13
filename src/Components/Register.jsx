@@ -1,19 +1,52 @@
-
+import Swal from 'sweetalert2'
 import { FaUser } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import register from '/Image/register.png'
 import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { ShareData } from "../assets/ContextApi/AuthContext";
 
 const Register = () => {
-    const handleRegister = (e)=>{
+    const [error, setError] = useState('')
+    const { createUser } = useContext(ShareData)
+    const handleRegister = (e) => {
         e.preventDefault();
-        const form= e.target;
-        const name= form.name.value;
-        const email= form.email.value;
-        const password= form.password.value;
-        console.log(form, name, email,password);
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        if (password.length >= 8) {
+            setError('kiso akta')
+        }
+        else {
+           return setError("password must 8 character or longer")
+        }
+        createUser(email, password)
+            .then(result => {
+                const user = result.user
+                if (user) {
+                    form.reset()
+
+                    return Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Registration Successfull",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+
+                }
+            })
+            .catch(error => {
+
+                setError(error.code);
+
+            })
+
     }
+
     return (
         <div className="grid  grid-cols-1  md:grid-cols-2  my-8 ">
             <div className=' flex justify-center bg-slate-300 border-r-4 border-r-fuchsia-700 '>
@@ -49,6 +82,7 @@ const Register = () => {
 
 
                     </div>
+
                     <div className="form-control w-full mt-2  ">
                         <label className="label">
                             <span className="label-text">Password</span>
@@ -61,15 +95,18 @@ const Register = () => {
 
 
                     </div>
+                    <p className='text-center text-red-700 font-semibold mt-2'>{error}</p>
                     <input className="btn text-white font-semibold bg-gradient-to-r from-fuchsia-700 to-blue-700 w-full mt-5" type="submit" value="Register" />
 
                 </form>
-              
+
 
             </div>
 
         </div>
     );
-};
+}
+
+
 
 export default Register;
