@@ -3,11 +3,14 @@ import { FaFacebook, FaArrowTurnDown } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import login from '/Image/login.jpg'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { ShareData } from "../assets/ContextApi/AuthContext";
 import Swal from 'sweetalert2'
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import auth from "../Firebase/Firebase";
 const Login = () => {
+    const navigate=useNavigate()
     const {logIn,setUser}=useContext(ShareData)
     const handleLogin = (e)=>{
         e.preventDefault();
@@ -29,11 +32,25 @@ const Login = () => {
                   });
             }
             form.reset()
+            navigate('/')
         })
         .catch(error=>{
             console.log(error.code);
         })
 
+    }
+
+
+    const handleSignInWithGoogle=()=>{
+        const provider= new GoogleAuthProvider();
+        signInWithPopup(auth,provider)
+        .then(result=>{
+            setUser(result.user);
+            navigate('/')
+        })
+        .catch(error=>{
+            console.log(error.code);
+        })
     }
     return (
         <div className="grid  grid-cols-1  md:grid-cols-2  my-8 ">
@@ -78,7 +95,7 @@ const Login = () => {
                         <h1 className="  ">Login with</h1>
                         <span><FaArrowTurnDown></FaArrowTurnDown></span>
                     </div>
-                    <div>
+                    <div onClick={handleSignInWithGoogle}>
                         <button className="btn   btn-outline btn-secondary w-full text-md"><span className="text-2xl"><FcGoogle></FcGoogle></span> Google</button>
                     </div>
                     <div >

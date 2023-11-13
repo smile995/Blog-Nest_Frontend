@@ -3,20 +3,21 @@ import { FaUser } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import register from '/Image/register.png'
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { ShareData } from "../assets/ContextApi/AuthContext";
 
 const Register = () => {
     const [error, setError] = useState('')
     const { createUser,setUser } = useContext(ShareData)
+    const navigate=useNavigate()
     const handleRegister = (e) => {
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
-        if (password.length > 7) {
+        if (password.length > 6) {
             if(!/[a-z]/.test(password)){
                 setError("Use atleast one/more small letter")
                 return
@@ -45,7 +46,7 @@ const Register = () => {
                 if (user) {
                     form.reset()
                     setError('')
-                    // Navigate('/')
+                    navigate('/')
 
                     return Swal.fire({
                         position: "top-end",
