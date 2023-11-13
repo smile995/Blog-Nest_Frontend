@@ -3,30 +3,49 @@ import { FaUser } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import register from '/Image/register.png'
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { ShareData } from "../assets/ContextApi/AuthContext";
 
 const Register = () => {
     const [error, setError] = useState('')
-    const { createUser } = useContext(ShareData)
+    const { createUser,setUser } = useContext(ShareData)
     const handleRegister = (e) => {
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
-        if (password.length >= 8) {
-            setError('kiso akta')
+        if (password.length > 7) {
+            if(!/[a-z]/.test(password)){
+                setError("Use atleast one/more small letter")
+                return
+            }
+            else if(!/[A-Z]/.test(password)){
+                setError("Use atleast one/more capital letter")
+                return
+            }
+            else if(!/[0-9]/.test(password)){
+                setError("Use atleast one/more digits")
+                return
+            }
+            else if(!/[!@#$%^&*]/.test(password)){
+                setError("Use atleast one/more special characters")
+                return
+            }
         }
         else {
-           return setError("password must 8 character or longer")
+           setError("password must 8 character or longer")
+           return 
         }
         createUser(email, password)
             .then(result => {
                 const user = result.user
+                setUser(user)
                 if (user) {
                     form.reset()
+                    setError('')
+                    // Navigate('/')
 
                     return Swal.fire({
                         position: "top-end",
@@ -95,7 +114,11 @@ const Register = () => {
 
 
                     </div>
-                    <p className='text-center text-red-700 font-semibold mt-2'>{error}</p>
+                    {
+                       
+                         <p className='text-center text-red-700 font-semibold mt-2'>{error}</p>
+                      
+                    }
                     <input className="btn text-white font-semibold bg-gradient-to-r from-fuchsia-700 to-blue-700 w-full mt-5" type="submit" value="Register" />
 
                 </form>

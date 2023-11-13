@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { ShareData } from "../assets/ContextApi/AuthContext";
 
 
 const Navbar = () => {
+    const {user,logOut}=useContext(ShareData)
     const nabManu = <>
         <li><NavLink to={"/"}>Home</NavLink></li>
         <li><NavLink to={"/addBlog"}>Add Blog</NavLink></li>
@@ -10,6 +13,11 @@ const Navbar = () => {
         <li><NavLink to={"/wishlist"}>Wishlist</NavLink></li>
 
     </>
+
+    const handleLogOut=()=>{
+        logOut()
+        .then()
+    }
     return (
         <div className="navbar md:px-5 ">
             <div className="navbar-start">
@@ -45,9 +53,18 @@ const Navbar = () => {
                             <img src="https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1309" />
                         </div>
                         <div>
-                            <Link to={'login'}>
-                                <button className="btn btn-secondary">Login</button>
+                           {
+                            user ?
+                            <div className="flex gap-3 items-center">
+                                {/* <p className="hidden md:contents">{users.email}</p> */}
+                                <button onClick={handleLogOut} className="font-semibold btn btn-secondary">Logout</button>
+                            </div>
+    
+                            :
+                            <Link to={'/login'}>
+                                <button className="font-semibold btn btn-secondary">Login</button>
                             </Link>
+                           }
                         </div>
 
                     </div>

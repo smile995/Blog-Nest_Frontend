@@ -4,13 +4,35 @@ import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import login from '/Image/login.jpg'
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { ShareData } from "../assets/ContextApi/AuthContext";
+import Swal from 'sweetalert2'
 const Login = () => {
+    const {logIn,setUser}=useContext(ShareData)
     const handleLogin = (e)=>{
         e.preventDefault();
         const form= e.target;
         const email= form.email.value;
         const password= form.password.value;
-        console.log( email,password);
+        // console.log( email,password);
+        logIn(email,password)
+        .then(result=>{
+            const user=(result.user);
+            setUser(user)
+            if(user){
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your work has been saved",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+            }
+        })
+        .catch(error=>{
+            console.log(error.code);
+        })
+
     }
     return (
         <div className="grid  grid-cols-1  md:grid-cols-2  my-8 ">

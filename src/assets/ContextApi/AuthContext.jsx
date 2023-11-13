@@ -1,10 +1,11 @@
 import { createContext, useEffect, useState } from "react";
 import auth from "../../Firebase/Firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 export const ShareData = createContext(null)
 const AuthContext = ({ children }) => {
     const [data, setData] = useState([]);
+    const [user,setUser]=useState(null)
     useEffect(() => {
 
         fetch("http://localhost:5000/blog")
@@ -20,11 +21,21 @@ const AuthContext = ({ children }) => {
     const createUser=(email,password)=>{
         return createUserWithEmailAndPassword(auth,email,password)
     }
+    const logIn =(email,password)=>{
+        return signInWithEmailAndPassword(auth,email,password)
+    }
+    const logOut=()=>{
+       return signOut(auth)
+    }
 
 
     const packageData = {
         data,
         createUser,
+        user,
+        setUser,
+        logIn,
+        signOut
     }
 
 

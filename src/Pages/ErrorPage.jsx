@@ -1,5 +1,5 @@
 
-import errorPage from '/public/Image/error.jpg'
+import errorPage from '/Image/error.jpg'
 const ErrorPage = () => {
     return (
         <div className='h-[90vh] flex justify-center items-center'>
