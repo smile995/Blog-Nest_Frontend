@@ -1,10 +1,11 @@
 # BlogNest
-- Live link : 
+- Live link : https://6555eefa820c196b89c43c58--iridescent-twilight-08a886.netlify.app
 
 # some feature of this project
 * React loading skeletal
 * Extra two login system like google and facebook
 * Social media link in footer
+
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
