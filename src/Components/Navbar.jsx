@@ -28,7 +28,7 @@ const Navbar = () => {
             )
     }
     return (
-        <div className="navbar md:px-5 ">
+        <div className="navbar md:px-5 items-center flex border-b-2 border-fuchsia-700 ">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -57,32 +57,34 @@ const Navbar = () => {
 
 
                 <div className="flex justify-center items-center">
-                    <div className="avatar">
-                        {
-                            user?.photoURL ? < div >
-                            <img src={user.photoURL} />
-                            </div>
-                                : <div className="w-12 h-12 rounded-full mr-3">
-                                    <img src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png" />
+                    
+                        <div>
+                            {
+                                user?.photoURL ? < div >
+                                    <img src={user.photoURL} />
                                 </div>
-                        }
+                                    : <div className="md:w-12 md:h-12 w-8 h-8 rounded-full mr-3">
+                                        <img src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png" />
+                                    </div>
+                            }
+                        </div>
 
                         <div>
                             {
                                 user ?
-                                    <div className="flex gap-3 items-center">
+                                    <div className="flex gap-1 md:gap-3 items-center">
                                         {/* <p className="hidden md:contents">{users.email}</p> */}
-                                        <button onClick={handleLogOut} className="font-semibold btn btn-secondary">Logout</button>
+                                        <button onClick={handleLogOut} className="font-semibold md:btn btn-sm md:btn-secondary btn-success">Logout</button>
                                     </div>
 
                                     :
                                     <Link to={'/login'}>
-                                        <button className="font-semibold btn btn-secondary">Login</button>
+                                        <button className="font-semibold btn-sm md:btn md:btn-secondary btn-success">Login</button>
                                     </Link>
                             }
                         </div>
 
-                    </div>
+                    
                 </div>
 
             </div>

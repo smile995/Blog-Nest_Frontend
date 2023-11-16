@@ -1,7 +1,16 @@
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowRight, FaBookReader  } from "react-icons/fa";
+import Swal from 'sweetalert2'
+import { Link } from "react-router-dom";
 const BlogCards = ({ item }) => {
+    const handlebookmark= ()=>{
+        return Swal.fire({
+            title: "Successfully Added",
+            text: "Add this blog in you list",
+            icon: "success"
+          });
+    }
     const { tittle, Category
-        , url, shortDescription } = item;
+        , url, shortDescription,_id } = item;
 
     return (
         <div className="shadow-md shadow-fuchsia-700  mt-8 flex flex-col">
@@ -14,9 +23,14 @@ const BlogCards = ({ item }) => {
                     <p className="text-2xl font-semibold text-slate-800">{tittle}</p>
                     <p>{shortDescription}</p>
                 </div>
-                <div className="mt-auto">
-                    <button className="btn bg-fuchsia-700 hover:bg-fuchsia-900 text-white">
-                        Read more <span><FaArrowRight></FaArrowRight></span>
+                <div className="mt-auto flex justify-between items-center">
+                    <Link to={`/allBlogs${_id}`}>
+                        <button className="btn bg-fuchsia-700 hover:bg-fuchsia-900 text-white">
+                            Read more <span><FaArrowRight></FaArrowRight></span>
+                        </button>
+                    </Link>
+                    <button onClick={handlebookmark}>
+                        <FaBookReader className="text-2xl text-fuchsia-700"></FaBookReader>
                     </button>
                 </div>
             </div>

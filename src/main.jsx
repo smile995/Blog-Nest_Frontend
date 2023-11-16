@@ -18,6 +18,7 @@ import AuthContext from './assets/ContextApi/AuthContext';
 import Login from './Components/Login';
 import Register from './Components/Register';
 import Private from './Components/Private';
+import Details from './Components/Details';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
+        path: '/:id',
+        element: <Private><Details></Details></Private>,
+      },
+      {
         path: '/addBlog',
         element: <Private><AddBlog></AddBlog></Private>
       },
@@ -37,6 +42,7 @@ const router = createBrowserRouter([
         path: '/allBlogs',
         element: <Private><AllBlogs></AllBlogs></Private>
       },
+      
       {
         path: '/featuredBlogs',
         element:<Private> <FeaturedBlog></FeaturedBlog></Private>
