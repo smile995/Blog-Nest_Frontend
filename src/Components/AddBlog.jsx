@@ -1,39 +1,39 @@
-import Swal from 'sweetalert2'
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const AddBlog = () => {
-  
 
-    const handleAddBlog=(e)=>{
+
+    const handleAddBlog = (e) => {
         e.preventDefault()
-        const form= e.target
-        const tittle= form.tittle.value
-        const url= form.url.value
-        const Category= form.select.value
-        const shortDescription= form.shortDescription.value
-        const longDescription= form.longDescription.value
-        const addBlog= {tittle, url,Category,shortDescription,longDescription}
+        const form = e.target
+        const tittle = form.tittle.value
+        const url = form.url.value
+        const Category = form.select.value
+        const shortDescription = form.shortDescription.value
+        const longDescription = form.longDescription.value
+        const addBlog = { tittle, url, Category, shortDescription, longDescription }
         console.log(addBlog);
-        fetch('http://localhost:5000/blog',{
-            method:'POST',
-           headers:{'content-type':'application/json'},
-           body:JSON.stringify(addBlog)
 
-        })
-        .then(req=>req.json())
-        .then(data=>{
-            console.log(data);
-            if(data.insertedId){
-                 Swal.fire({
-                    icon: "success",
-                    title: "Blog added successfully",
-                    text: "Congratulations",
-                    
-                  });
-                  form.reset()
-                  
-            }
-        })
-        .catch(Error=>console.log(Error))
+        axios.post('http://localhost:5000/add-blog', addBlog)
+            .then(res => {
+                if(res?.data?.insertedId ){
+                    Swal.fire({
+                        icon: "success",
+                        title: "Wow...",
+                        text: "Blog Successfully Added",
+                      
+                      });
+                }
+                form.reset()
+            } )
+            .catch (error=>{
+                console.log(error);
+                
+            })
+
+
+
     }
     return (
         <div className='my-8'>
@@ -63,7 +63,7 @@ const AddBlog = () => {
                         <div className="form-control w-full ">
                             <label className="label">
                                 <span className="label-text">Category</span>
-                               
+
                             </label>
                             <select name='select' className="select border-fuchsia-700 select-bordered">
                                 <option disabled selected>Select one</option>
@@ -73,9 +73,9 @@ const AddBlog = () => {
                                 <option>History</option>
                                 <option>Food</option>
                                 <option>Psychology</option>
-                                
+
                             </select>
-                           
+
                         </div>
                         <div className="form-control w-full ">
                             <label className="label">

@@ -1,6 +1,7 @@
 import { FaArrowRight, FaBookReader  } from "react-icons/fa";
 import Swal from 'sweetalert2'
 import { Link } from "react-router-dom";
+// eslint-disable-next-line react/prop-types
 const BlogCards = ({ item }) => {
     const handlebookmark= ()=>{
         return Swal.fire({
@@ -9,8 +10,8 @@ const BlogCards = ({ item }) => {
             icon: "success"
           });
     }
-    const { tittle, Category
-        , url, shortDescription,_id } = item;
+   
+    const { tittle, Category , url, shortDescription,_id } = item;
 
     return (
         <div className="shadow-md shadow-fuchsia-700  mt-8 flex flex-col">
@@ -24,7 +25,7 @@ const BlogCards = ({ item }) => {
                     <p>{shortDescription}</p>
                 </div>
                 <div className="mt-auto flex justify-between items-center">
-                    <Link to={`/allBlogs${_id}`}>
+                    <Link to={`/blog/${_id}`}>
                         <button className="btn bg-fuchsia-700 hover:bg-fuchsia-900 text-white">
                             Read more <span><FaArrowRight></FaArrowRight></span>
                         </button>

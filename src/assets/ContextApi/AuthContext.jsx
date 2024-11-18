@@ -1,8 +1,10 @@
 import { createContext, useEffect, useState } from "react";
 import auth from "../../Firebase/Firebase";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import axios from "axios";
 
 export const ShareData = createContext(null)
+// eslint-disable-next-line react/prop-types
 const AuthContext = ({ children }) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState();
@@ -10,15 +12,9 @@ const AuthContext = ({ children }) => {
   
     useEffect(() => {
         setLoading(true)
-        fetch("https://explore-b811-blog-server.vercel.app/blog")
-            .then((res) => res.json())
-            .then((data) => {
-                setData(data);
-                setLoading(false)
-            })
-            .catch((error) => {
-                console.error('Error fetching data:', error);
-            });
+       axios.get('http://localhost:5000/blogs')
+       .then(res=>setData(res.data))
+       setLoading(false)
     }, []);
 
 

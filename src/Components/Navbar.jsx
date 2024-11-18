@@ -7,11 +7,12 @@ const Navbar = () => {
     const { user, logOut } = useContext(ShareData)
     const nabManu = <>
         <li><NavLink to={"/"}>Home</NavLink></li>
-        <li><NavLink to={"/addBlog"}>Add Blog</NavLink></li>
+        
         <li><NavLink to={"/allBlogs"}>All blogs</NavLink></li>
         <li><NavLink to={"/featuredBlogs"}>Featured Blogs</NavLink></li>
-        <li><NavLink to={"/wishlist"}>Wishlist</NavLink></li>
-
+        {
+            user && <><li><NavLink to={"/wishlist"}>Wishlist</NavLink></li><li><NavLink to={"/addBlog"}>Add Blog</NavLink></li></>
+        }
     </>
 
     const handleLogOut = () => {
@@ -56,16 +57,22 @@ const Navbar = () => {
 
 
 
-                <div className="flex justify-center items-center">
+                <div className="flex justify-center items-center gap-4">
                     
                         <div>
                             {
                                 user?.photoURL ? < div >
-                                    <img src={user.photoURL} />
-                                </div>
-                                    : <div className="md:w-12 md:h-12 w-8 h-8 rounded-full mr-3">
-                                        <img src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png" />
+                                    <img className="w-12 rounded-full" src={user.photoURL} />
+                                </div>  || <div className="avatar placeholder">
+                                    <div className="bg-neutral text-neutral-content w-12 rounded-full">
+                                      <span>{user?.email.slice(0,1)}</span>
                                     </div>
+                                  </div>
+                                    : <div className="avatar">
+                                    <div  className="w-12 rounded-full">
+                                      <img src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png" />
+                                    </div>
+                                  </div>
                             }
                         </div>
 
