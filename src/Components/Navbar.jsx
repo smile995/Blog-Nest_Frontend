@@ -8,7 +8,7 @@ const Navbar = () => {
     const nabManu = <>
         <li><NavLink to={"/"}>Home</NavLink></li>
         
-        <li><NavLink to={"/allBlogs"}>All blogs</NavLink></li>
+     
         <li><NavLink to={"/featuredBlogs"}>Featured Blogs</NavLink></li>
         {
             user && <><li><NavLink to={"/wishlist"}>Wishlist</NavLink></li><li><NavLink to={"/addBlog"}>Add Blog</NavLink></li></>

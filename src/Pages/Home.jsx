@@ -1,11 +1,28 @@
 
-import { useContext } from 'react';
-import Swal from 'sweetalert2'
+import { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 import BlogCards from '../Components/BlogCards';
-import { ShareData } from '../assets/ContextApi/AuthContext';
+
+import axios from 'axios';
+import { useLoaderData } from 'react-router-dom';
+//import { ShareData } from '../assets/ContextApi/AuthContext';
 
 const Home = () => {
-    const { data } = useContext(ShareData)
+    const [data, setData] = useState([]);
+    const [numberOfItems, setNumberOfItems] = useState(12)
+    const [currentPage, setCurrentpage] = useState(0)
+   //// const { setLoading } = useContext(ShareData)
+    useEffect(() => {
+        axios.get('http://localhost:5000/blogs')
+            .then(res => setData(res?.data))
+       // setLoading(false)
+    }, []);
+
+    const { total } = useLoaderData();
+    const numberOfPages = Math.ceil(total / numberOfItems)
+    const totalPages = [...Array(numberOfPages).keys()]
+
+
 
     const handleSubscribe = () => {
         return Swal.fire({
@@ -14,6 +31,13 @@ const Home = () => {
             text: "You don’t need to send emails",
             footer: '<a href="#">Why do I have this issue?</a>'
         });
+    }
+
+    const handleItemsPerPage = (e) => {
+        const value = parseInt(e.target.value);
+        setNumberOfItems(value)
+        setCurrentpage(0)
+
     }
     return (
         <div>
@@ -59,12 +83,37 @@ const Home = () => {
             {/* recent blog post section */}
 
             <div className="text-center text-4xl font-semibold text-fuchsia-700">
-                <h1>Recent Blogs: {data.length}</h1>
+                <h1>Recent Blogs: {data?.length}</h1>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 rounded-lg'>
                 {
-                    data.map(item => <BlogCards key={item._id} item={item} ></BlogCards>)
+                    data?.map(item => <BlogCards key={item._id} item={item} ></BlogCards>)
                 }
+            </div>
+            <div className='my-8 flex justify-center'>
+                <div>
+                    <p className='text-center font-semibold'>Your are in the page : {currentPage}</p>
+                    <button className='px-2  bg-fuchsia-700 text-white rounded mr-2 font-bold'>
+                        Previous
+                    </button>
+                    {
+                        totalPages?.map(page => <button
+                            onClick={() => setCurrentpage(page)}
+                            key={page}
+                            className={`px-2 bg-fuchsia-700 text-white rounded mr-2 font-bold`}>
+                            {page}
+                          </button>)
+                    }
+                    <button className='px-2  bg-fuchsia-700 text-white rounded mr-2 font-bold'>
+                        Next
+                    </button>
+                    <select value={numberOfItems} onChange={handleItemsPerPage} className='px-2  bg-fuchsia-700 text-white rounded mr-2 font-bold'>
+                        <option value="12"> 12</option>
+                        <option value="24"> 24</option>
+                        <option value="36"> 36</option>
+                        <option value="48"> 48</option>
+                    </select>
+                </div>
             </div>
             <div className="bg-gray-800 p-5 my-8 lg:w-1/2 mx-auto rounded-xl">
                 <div>
@@ -82,6 +131,8 @@ const Home = () => {
                     <p className="text-gray-500 text-center mt-2 font-semibold ">Your email is safe with us, We do not spam</p>
                 </div>
             </div>
+
+
         </div>
     );
 };

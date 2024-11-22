@@ -15,6 +15,7 @@ const BlogCards = ({ item }) => {
        
     }
    
+    // eslint-disable-next-line react/prop-types
     const { tittle, Category , url, shortDescription,_id } = item;
 
     return (

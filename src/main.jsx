@@ -11,7 +11,6 @@ import Roots from './Pages/Roots';
 import ErrorPage from './Pages/ErrorPage';
 import Home from './Pages/Home';
 import AddBlog from './Components/AddBlog';
-import AllBlogs from './Components/AllBlogs';
 import FeaturedBlog from './Components/FeaturedBlog';
 import Wishlist from './Components/Wishlist';
 import AuthContext from './assets/ContextApi/AuthContext';
@@ -29,6 +28,7 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>,
+        loader:()=>fetch('http://localhost:5000/total-blogs')
       },
       {
         path: '/blog/:id',
@@ -39,10 +39,7 @@ const router = createBrowserRouter([
         path: '/addBlog',
         element: <Private><AddBlog></AddBlog></Private>
       },
-      {
-        path: '/allBlogs',
-        element: <Private><AllBlogs></AllBlogs></Private>
-      },
+     
 
       {
         path: '/featuredBlogs',
