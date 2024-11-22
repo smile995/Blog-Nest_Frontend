@@ -1,14 +1,18 @@
+import axios from "axios";
+
 import { FaArrowRight, FaBookReader  } from "react-icons/fa";
-import Swal from 'sweetalert2'
+
 import { Link } from "react-router-dom";
 // eslint-disable-next-line react/prop-types
 const BlogCards = ({ item }) => {
-    const handlebookmark= ()=>{
-        return Swal.fire({
-            title: "Successfully Added",
-            text: "Add this blog in you list",
-            icon: "success"
-          });
+ 
+    const handlebookmark= (id)=>{
+      axios.get(`http://localhost:5000/wishlist/${id}`)
+      .then(res=>{
+        console.log(res.data);
+        
+      })
+       
     }
    
     const { tittle, Category , url, shortDescription,_id } = item;
@@ -30,7 +34,7 @@ const BlogCards = ({ item }) => {
                             Read more <span><FaArrowRight></FaArrowRight></span>
                         </button>
                     </Link>
-                    <button onClick={handlebookmark}>
+                    <button onClick={()=>handlebookmark(_id)}>
                         <FaBookReader className="text-2xl text-fuchsia-700"></FaBookReader>
                     </button>
                 </div>

@@ -59,7 +59,7 @@ const Home = () => {
             {/* recent blog post section */}
 
             <div className="text-center text-4xl font-semibold text-fuchsia-700">
-                <h1>Recent Blogs</h1>
+                <h1>Recent Blogs: {data.length}</h1>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 rounded-lg'>
                 {
